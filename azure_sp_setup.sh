@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script creates a service principal and updates the .env file with the necessary environment variables.
+# This script creates a service principal in Azure and sets the necessary environment variables.
 
 # Install dependencies 
 apt install jq
@@ -31,13 +31,11 @@ client_id=$(echo $sp_info | jq -r '.appId')
 client_secret=$(echo $sp_info | jq -r '.password')
 tenant_id=$(az account show --query tenantId -o tsv)
 
-# Create or update .env file
-env_file=".env"
-echo "Creating $env_file..."
-echo "# Azure" >> $env_file
-echo "ARM_CLIENT_ID=\"$client_id\"" >> $env_file
-echo "ARM_CLIENT_SECRET=\"$client_secret\"" >> $env_file
-echo "ARM_SUBSCRIPTION_ID=\"$subscription_id\"" >> $env_file
-echo "ARM_TENANT_ID=\"$tenant_id\"" >> $env_file
+# Set environment variables
+echo "Setting environment variables..."
+export ARM_CLIENT_ID="$client_id"
+export ARM_CLIENT_SECRET="$client_secret"
+export ARM_SUBSCRIPTION_ID="$subscription_id"
+export ARM_TENANT_ID="$tenant_id"
 
-echo "Service principal created and environment variables updated in $env_file."
+echo "Service principal created successfully."
