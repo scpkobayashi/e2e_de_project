@@ -64,3 +64,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 Footer
+
+# Ignore Environment Variables
+.env
