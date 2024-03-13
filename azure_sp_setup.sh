@@ -26,7 +26,7 @@ az account set --subscription $subscription_id
 
 # Create a service principal
 echo "Creating service principal..."
-sp_info=$(az ad sp create-for-rbac --role contributor --scopes "/subscriptions/$subscription_id")
+sp_info=$(az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$subscription_id")
 client_id=$(echo $sp_info | jq -r '.appId')
 client_secret=$(echo $sp_info | jq -r '.password')
 tenant_id=$(az account show --query tenantId -o tsv)
