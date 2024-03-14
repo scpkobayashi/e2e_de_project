@@ -1,7 +1,10 @@
+# This file is used to create the infrastructure for the virtual machine
+
 resource "random_pet" "rg_name" {
   prefix = var.resource_group_name_prefix
 }
 
+# Create resource group
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
   name     = random_pet.rg_name.id
@@ -97,6 +100,9 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
   network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
   size                  = "Standard_DS1_v2"
 
+  # This is where we pass our cloud-init
+  custom_data = data.cloudinit_config.my_terraform_vm.rendered
+
   os_disk {
     name                 = "myOsDisk"
     caching              = "ReadWrite"
@@ -120,5 +126,19 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
 
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.my_storage_account.primary_blob_endpoint
+  }
+}
+
+# Create a cloud-init configuration
+data "cloudinit_config" "my_terraform_vm" {
+  gzip          = false
+  base64_encode = true
+
+  # Deploy airbyte on the virtual machine
+  part {
+    filename     = "cloud-config.yaml"
+    content_type = "text/cloud-config"
+
+    content = file("cloud-config.yaml")
   }
 }
