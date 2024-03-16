@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "agency_id": {
+      "type": ["string"]
+    },
+    "agency_name": {
+      "type": ["null", "string"]
+    },
+    "agency_url": {
+      "type": ["null", "string"]
+    },
+    "agency_timezone": {
+      "type": ["null", "string"]
+    },
+    "agency_lang": {
+      "type": ["null", "string"]
+    },
+    "agency_phone": {
+      "type": ["null", "string"]
+    }
+  }
+}

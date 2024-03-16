@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "route_id": {
+      "type": ["string"]
+    },
+    "agency_id": {
+      "type": ["null", "string"]
+    },
+    "route_short_name": {
+      "type": ["null", "integer"]
+    },
+    "route_long_name": {
+      "type": ["null", "string"]
+    },
+    "route_desc": {
+      "type": ["null", "string"]
+    },
+    "route_type": {
+      "type": ["null", "string"]
+    }
+  }
+}

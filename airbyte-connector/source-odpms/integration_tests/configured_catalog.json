@@ -1,0 +1,66 @@
+{
+  "streams": [
+    {
+      "stream": {
+        "name": "agency",
+        "json_schema": {  
+          "type": "object",
+          "properties": {
+            "agency_id": {
+              "type": ["string"]
+            },
+            "agency_name": {
+              "type": ["null", "string"]
+            },
+            "agency_url": {
+              "type": ["null", "string"]
+            },
+            "agency_timezone": {
+              "type": ["null", "string"]
+            },
+            "agency_lang": {
+              "type": ["null", "string"]
+            },
+            "agency_phone": {
+              "type": ["null", "string"]
+            }
+          }
+        },
+        "supported_sync_modes": ["full_refresh"]
+      },
+      "sync_mode": "full_refresh",
+      "destination_sync_mode": "append"
+    },
+    {
+      "stream": {
+        "name": "routes",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "route_id": {
+              "type": ["string"]
+            },
+            "agency_id": {
+              "type": ["null", "string"]
+            },
+            "route_short_name": {
+              "type": ["null", "integer"]
+            },
+            "route_long_name": {
+              "type": ["null", "string"]
+            },
+            "route_desc": {
+              "type": ["null", "string"]
+            },
+            "route_type": {
+              "type": ["null", "string"]
+            }
+          }
+        },
+        "supported_sync_modes": ["full_refresh"]
+      },
+      "sync_mode": "full_refresh",
+      "destination_sync_mode": "append"
+    }
+  ]
+}
